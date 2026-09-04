@@ -88,6 +88,11 @@ function formatTime(isoString) {
 
 // --- 全路線 (またはフィルタされた路線) を取得して描画 ---
 async function loadBoard() {
+  if (!ODPT_API_KEY || ODPT_API_KEY === "YOUR_API_KEY_HERE") {
+    boardEl.innerHTML = `<p class="board__empty">config.js に ODPT の APIキーを設定すると、ここに運行状況が表示されます。</p>`;
+    return;
+  }
+
   const selected = lineFilterEl.value;
   const targetLines = selected === "all" ? LINES : LINES.filter((l) => l.id === selected);
 
@@ -108,9 +113,7 @@ populateLineFilter();
 lineFilterEl.addEventListener("change", loadBoard);
 refreshBtn.addEventListener("click", loadBoard);
 
+loadBoard();
 if (ODPT_API_KEY && ODPT_API_KEY !== "YOUR_API_KEY_HERE") {
-  loadBoard();
   setInterval(loadBoard, REFRESH_INTERVAL_MS);
-} else {
-  boardEl.innerHTML = `<p class="board__empty">config.js に ODPT の APIキーを設定すると、ここに運行状況が表示されます。</p>`;
 }
