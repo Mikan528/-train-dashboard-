@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>関東運行情報ボード</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="board-header">
+  <div class="board-header__title">
+    <span class="board-header__mark">●</span>
+    <h1>関東運行情報ボード</h1>
+  </div>
+  <div class="board-header__meta">
+    <span id="clock" class="mono">--:--:--</span>
+    <span id="updated" class="mono">最終更新 --</span>
+  </div>
+</header>
+
+<section class="controls">
+  <label for="line-filter">路線でしぼる</label>
+  <select id="line-filter" class="mono">
+    <option value="all">すべての登録路線</option>
+  </select>
+  <button id="refresh-btn">今すぐ更新</button>
+</section>
+
+<main id="board" class="board" aria-live="polite">
+  <p class="board__empty">路線を登録してAPIキーを設定すると、ここに運行状況が表示されます。</p>
+</main>
+
+<footer class="board-footer">
+  <p>データ提供: <a href="https://www.odpt.org/" target="_blank" rel="noopener">公共交通オープンデータセンター（ODPT）</a></p>
+</footer>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
